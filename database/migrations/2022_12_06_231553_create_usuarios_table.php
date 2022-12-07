@@ -17,9 +17,12 @@ return new class extends Migration
             $table->id();
             $table->text('nome');
             $table->text('sobrenome');
+            $table->date('data_nascimento');
+            $table->text('telefone');
             $table->text('cpf');
             $table->text('email', 100);
             $table->text('senha');
+            $table->text('foto');
             $table->integer('niveis_acesso_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

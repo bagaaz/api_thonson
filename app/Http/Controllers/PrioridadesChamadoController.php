@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePrioridadeRequest;
-use App\Http\Requests\UpdatePrioridadeRequest;
-use App\Models\Prioridade;
+use App\Http\Requests\StorePrioridadesChamadoRequest;
+use App\Http\Requests\UpdatePrioridadesChamadoRequest;
+use App\Models\PrioridadesChamado;
 
-class PrioridadeController extends Controller
+class PrioridadesChamadoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class PrioridadeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePrioridadeRequest  $request
+     * @param  \App\Http\Requests\StorePrioridadesChamadoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePrioridadeRequest $request)
+    public function store(StorePrioridadesChamadoRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class PrioridadeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Prioridade  $prioridade
+     * @param  \App\Models\PrioridadesChamado  $prioridadesChamado
      * @return \Illuminate\Http\Response
      */
-    public function show(Prioridade $prioridade)
+    public function show(PrioridadesChamado $prioridadesChamado)
     {
         //
     }
@@ -53,10 +53,10 @@ class PrioridadeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Prioridade  $prioridade
+     * @param  \App\Models\PrioridadesChamado  $prioridadesChamado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Prioridade $prioridade)
+    public function edit(PrioridadesChamado $prioridadesChamado)
     {
         //
     }
@@ -64,11 +64,11 @@ class PrioridadeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePrioridadeRequest  $request
-     * @param  \App\Models\Prioridade  $prioridade
+     * @param  \App\Http\Requests\UpdatePrioridadesChamadoRequest  $request
+     * @param  \App\Models\PrioridadesChamado  $prioridadesChamado
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePrioridadeRequest $request, Prioridade $prioridade)
+    public function update(UpdatePrioridadesChamadoRequest $request, PrioridadesChamado $prioridadesChamado)
     {
         //
     }
@@ -76,10 +76,10 @@ class PrioridadeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Prioridade  $prioridade
+     * @param  \App\Models\PrioridadesChamado  $prioridadesChamado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Prioridade $prioridade)
+    public function destroy(PrioridadesChamado $prioridadesChamado)
     {
         //
     }

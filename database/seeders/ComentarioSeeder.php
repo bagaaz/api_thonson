@@ -14,6 +14,6 @@ class ComentarioSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Comentario::factory(50)->create();
     }
 }

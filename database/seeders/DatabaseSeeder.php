@@ -28,18 +28,24 @@ class DatabaseSeeder extends Seeder
         \App\Models\Usuario::factory()->create([
             'nome' => 'Gabriel',
             'sobrenome' => 'Oliveira',
+            'data_nascimento' => '1998-02-05',
+            'telefone' => '27998700053',
             'cpf' => '15015573782',
             'email' => 'gabriel.acz.br@gmail.com',
             'senha' => Hash::make('96911431'),
+            'foto' => 'https://avatars.githubusercontent.com/u/1?v=4',
             'niveis_acesso_id' => 1
         ]);
 
         \App\Models\Usuario::factory()->create([
             'nome' => 'Admin',
             'sobrenome' => 'User',
+            'data_nascimento' => '1990-01-01',
+            'telefone' => '27900000000',
             'cpf' => '00000000000',
             'email' => 'admin@thonson.com.br',
             'senha' => Hash::make('admin'),
+            'foto' => 'https://avatars.githubusercontent.com/u/3?v=4',
             'niveis_acesso_id' => 1,
         ]);
 
@@ -60,23 +66,39 @@ class DatabaseSeeder extends Seeder
         ]);
 
         /*
-         * Prioridades
+         * Prioridades Chamados
          */
 
-        \App\Models\Prioridade::factory()->create([
+        \App\Models\PrioridadesChamado::factory()->create([
             'prioridade' => 'baixa'
         ]);
 
-        \App\Models\Prioridade::factory()->create([
+        \App\Models\PrioridadesChamado::factory()->create([
             'prioridade' => 'media'
         ]);
 
-        \App\Models\Prioridade::factory()->create([
+        \App\Models\PrioridadesChamado::factory()->create([
             'prioridade' => 'alta'
         ]);
 
-        \App\Models\Prioridade::factory()->create([
+        \App\Models\PrioridadesChamado::factory()->create([
             'prioridade' => 'critica'
+        ]);
+
+        /*
+         * Status Chamados
+         */
+
+        \App\Models\StatusChamado::factory()->create([
+            'status_chamado' => 'aberto'
+        ]);
+
+        \App\Models\StatusChamado::factory()->create([
+            'status_chamado' => 'em andamento'
+        ]);
+
+        \App\Models\StatusChamado::factory()->create([
+            'status_chamado' => 'fechado'
         ]);
     }
 }

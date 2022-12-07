@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\ChamadoRepositoryInterface;
 use App\Http\Requests\StoreChamadoRequest;
 use App\Http\Requests\UpdateChamadoRequest;
 use App\Models\Chamado;
 
 class ChamadoController extends Controller
 {
+    private ChamadoRepositoryInterface $chamadoRepository;
+
+    public function __construct(ChamadoRepositoryInterface $chamadoRepository)
+    {
+        $this->chamadoRepository = $chamadoRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,9 @@ class ChamadoController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'data' => $this->chamadoRepository->getChamados()
+        ]);
     }
 
     /**

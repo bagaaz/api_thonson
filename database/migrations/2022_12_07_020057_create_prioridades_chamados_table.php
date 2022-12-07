@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comentarios', function (Blueprint $table) {
+        Schema::create('prioridades_chamados', function (Blueprint $table) {
             $table->id();
-            $table->char('comentario', 250);
-            $table->integer('chamado_id');
-            $table->integer('usuario_id');
+            $table->text('prioridade');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comentarios');
+        Schema::dropIfExists('prioridades_chamados');
     }
 };

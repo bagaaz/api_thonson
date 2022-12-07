@@ -17,7 +17,9 @@ class ComentarioFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'chamado_id' => $this->faker->numberBetween(1, 10),
+            'usuario_id' => $this->faker->randomElement([1, 2]),
+            'comentario' => $this->faker->text(250),
         ];
     }
 }

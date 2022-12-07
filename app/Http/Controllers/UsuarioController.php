@@ -2,20 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\UsuarioRepositoryInterface;
 use App\Http\Requests\StoreUsuarioRequest;
 use App\Http\Requests\UpdateUsuarioRequest;
+use Illuminate\Http\JsonResponse;
 use App\Models\Usuario;
 
 class UsuarioController extends Controller
 {
+    private UsuarioRepositoryInterface $usuarioRepository;
+
+    public function __construct(UsuarioRepositoryInterface $usuarioRepository)
+    {
+        $this->usuarioRepository = $usuarioRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        return response()->json([
+            'data' => $this->usuarioRepository->getUsuarios()
+        ]);
     }
 
     /**

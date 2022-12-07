@@ -20,9 +20,10 @@ return new class extends Migration
             $table->text('os');
             $table->text('mnemonico_shift');
             $table->text('mnemonico_apoio')->nullable();
-            $table->text('prioridade_id');
-            $table->json('imagens')->nullable();
+            $table->integer('prioridade_id');
+            $table->integer('status_id');
             $table->integer('usuario_id');
+            $table->text('imagem')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreComentarioRequest;
-use App\Http\Requests\UpdateComentarioRequest;
-use App\Models\Comentario;
+use App\Http\Requests\StoreStatusChamadoRequest;
+use App\Http\Requests\UpdateStatusChamadoRequest;
+use App\Models\StatusChamado;
 
-class ComentarioController extends Controller
+class StatusChamadoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ComentarioController extends Controller
      */
     public function index()
     {
-        return "Teste de comentário OK";
+        //
     }
 
     /**
@@ -31,10 +31,10 @@ class ComentarioController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreComentarioRequest  $request
+     * @param  \App\Http\Requests\StoreStatusChamadoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreComentarioRequest $request)
+    public function store(StoreStatusChamadoRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class ComentarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Comentario  $comentario
+     * @param  \App\Models\StatusChamado  $statusChamado
      * @return \Illuminate\Http\Response
      */
-    public function show(Comentario $comentario)
+    public function show(StatusChamado $statusChamado)
     {
         //
     }
@@ -53,10 +53,10 @@ class ComentarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Comentario  $comentario
+     * @param  \App\Models\StatusChamado  $statusChamado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comentario $comentario)
+    public function edit(StatusChamado $statusChamado)
     {
         //
     }
@@ -64,11 +64,11 @@ class ComentarioController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateComentarioRequest  $request
-     * @param  \App\Models\Comentario  $comentario
+     * @param  \App\Http\Requests\UpdateStatusChamadoRequest  $request
+     * @param  \App\Models\StatusChamado  $statusChamado
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateComentarioRequest $request, Comentario $comentario)
+    public function update(UpdateStatusChamadoRequest $request, StatusChamado $statusChamado)
     {
         //
     }
@@ -76,10 +76,10 @@ class ComentarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Comentario  $comentario
+     * @param  \App\Models\StatusChamado  $statusChamado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comentario $comentario)
+    public function destroy(StatusChamado $statusChamado)
     {
         //
     }

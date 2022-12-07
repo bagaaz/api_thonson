@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('prioridades', function (Blueprint $table) {
+        Schema::create('status_chamados', function (Blueprint $table) {
             $table->id();
-            $table->text('prioridade');
+            $table->string('status_chamado');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prioridades');
+        Schema::dropIfExists('status_chamados');
     }
 };
