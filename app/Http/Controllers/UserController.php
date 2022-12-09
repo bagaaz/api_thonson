@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\UsuarioRepositoryInterface;
-use App\Http\Requests\StoreUsuarioRequest;
-use App\Http\Requests\UpdateUsuarioRequest;
+use App\Interfaces\UserRepositoryInterface;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\JsonResponse;
-use App\Models\Usuario;
+use App\Models\User;
 
-class UsuarioController extends Controller
+class UserController extends Controller
 {
-    private UsuarioRepositoryInterface $usuarioRepository;
+    private UserRepositoryInterface $usuarioRepository;
 
-    public function __construct(UsuarioRepositoryInterface $usuarioRepository)
+    public function __construct(UserRepositoryInterface $usuarioRepository)
     {
         $this->usuarioRepository = $usuarioRepository;
     }
@@ -42,10 +42,10 @@ class UsuarioController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreUsuarioRequest  $request
+     * @param  \App\Http\Requests\StoreUserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUsuarioRequest $request)
+    public function store(StoreUserRequest $request)
     {
         //
     }
@@ -53,10 +53,10 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Usuario  $usuario
+     * @param  \App\Models\User  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function show(Usuario $usuario)
+    public function show(User $usuario)
     {
         //
     }
@@ -64,10 +64,10 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Usuario  $usuario
+     * @param  \App\Models\User  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function edit(Usuario $usuario)
+    public function edit(User $usuario)
     {
         //
     }
@@ -75,11 +75,11 @@ class UsuarioController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateUsuarioRequest  $request
-     * @param  \App\Models\Usuario  $usuario
+     * @param  \App\Http\Requests\UpdateUserRequest  $request
+     * @param  \App\Models\User  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUsuarioRequest $request, Usuario $usuario)
+    public function update(UpdateUserRequest $request, User $usuario)
     {
         //
     }
@@ -87,10 +87,10 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Usuario  $usuario
+     * @param  \App\Models\User  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuario $usuario)
+    public function destroy(User $usuario)
     {
         //
     }

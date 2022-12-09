@@ -3,14 +3,14 @@
 namespace App\Repositories;
 
 use App\Interfaces\ComentarioRepositoryInterface;
-use App\Interfaces\UsuarioRepositoryInterface;
+use App\Interfaces\UserRepositoryInterface;
 use App\Models\Comentario;
 
 class ComentarioRepository implements ComentarioRepositoryInterface
 {
-    private UsuarioRepositoryInterface $usuarioRepository;
+    private UserRepositoryInterface $usuarioRepository;
 
-    public function __construct(UsuarioRepositoryInterface $usuarioRepository)
+    public function __construct(UserRepositoryInterface $usuarioRepository)
     {
         $this->usuarioRepository = $usuarioRepository;
     }

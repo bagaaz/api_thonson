@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\ChamadoController;
 use App\Http\Controllers\ComentarioController;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
-use Illuminate\Routing\RouteGroup;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +22,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/login', function(Request $request) {
+    if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        $user = Auth::user();
+        $token = $user->createToken('JWT');
+
+        return response()->json($token, 200);
+    }
+    return response()->json('Usuário ou senha inválidos.', 401);
+});
+
 Route::prefix('chamado')->group(function () {
     Route::get('/', [ChamadoController::class, 'index'])->name('chamado.index');
     Route::get('/create', [ChamadoController::class, 'create'])->name('chamado.create');
@@ -33,13 +43,13 @@ Route::prefix('chamado')->group(function () {
 });
 
 Route::prefix('usuario')->group(function () {
-    Route::get('/', [UsuarioController::class, 'index'])->name('usuario.index');
-    Route::get('/create', [UsuarioController::class, 'create'])->name('usuario.create');
-    Route::post('/store', [UsuarioController::class, 'store'])->name('usuario.store');
-    Route::get('/show/{id}', [UsuarioController::class, 'show'])->where('id', '[0-9]+')->name('usuario.show');
-    Route::get('/edit/{id}', [UsuarioController::class, 'edit'])->where('id', '[0-9]+')->name('usuario.edit');
-    Route::post('/update/{id}', [UsuarioController::class, 'update'])->where('id', '[0-9]+')->name('usuario.update');
-    Route::get('/destroy/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuario.destroy');
+    Route::get('/', [UserController::class, 'index'])->name('usuario.index');
+    Route::get('/create', [UserController::class, 'create'])->name('usuario.create');
+    Route::post('/store', [UserController::class, 'store'])->name('usuario.store');
+    Route::get('/show/{id}', [UserController::class, 'show'])->where('id', '[0-9]+')->name('usuario.show');
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->where('id', '[0-9]+')->name('usuario.edit');
+    Route::post('/update/{id}', [UserController::class, 'update'])->where('id', '[0-9]+')->name('usuario.update');
+    Route::get('/destroy/{id}', [UserController::class, 'destroy'])->where('id', '[0-9]+')->name('usuario.destroy');
 });
 
 Route::prefix('comentario')->group(function () {

@@ -18,9 +18,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'id',
+        'nome',
+        'sobrenome',
+        'data_nascimento',
+        'telefone',
+        'cpf',
         'email',
-        'password',
+        'foto',
     ];
 
     /**
@@ -30,6 +35,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
+        'niveis_acesso_id',
         'remember_token',
     ];
 
@@ -41,4 +47,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function nivelAcesso()
+    {
+        return $this->belongsTo(NivelAcesso::class);
+    }
+
+    public function chamados()
+    {
+        return $this->hasMany(Chamado::class);
+    }
 }

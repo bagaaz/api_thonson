@@ -5,16 +5,16 @@ namespace App\Repositories;
 use App\Helpers\Helper;
 use App\Interfaces\ChamadoRepositoryInterface;
 use App\Interfaces\ComentarioRepositoryInterface;
-use App\Interfaces\UsuarioRepositoryInterface;
+use App\Interfaces\UserRepositoryInterface;
 use App\Models\Chamado;
 
 class ChamadoRepository implements ChamadoRepositoryInterface
 {
 
-    private UsuarioRepositoryInterface $usuarioRepository;
+    private UserRepositoryInterface $usuarioRepository;
     private ComentarioRepositoryInterface $comentarioRepository;
 
-    public function __construct(UsuarioRepositoryInterface $usuarioRepository, ComentarioRepositoryInterface $comentarioRepository)
+    public function __construct(UserRepositoryInterface $usuarioRepository, ComentarioRepositoryInterface $comentarioRepository)
     {
         $this->usuarioRepository = $usuarioRepository;
         $this->comentarioRepository = $comentarioRepository;

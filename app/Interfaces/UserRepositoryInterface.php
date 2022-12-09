@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-interface UsuarioRepositoryInterface
+interface UserRepositoryInterface
 {
     public function getUsuarios();
     public function getUsuario($id);

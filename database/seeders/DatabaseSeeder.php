@@ -20,31 +20,25 @@ class DatabaseSeeder extends Seeder
          */
 
         \App\Models\User::factory()->create([
-            'name' => 'Gabriel Oliveira',
-            'email' => 'gabriel.acz.br@gmail.com',
-            'password' => Hash::make('96911431')
-        ]);
-
-        \App\Models\Usuario::factory()->create([
             'nome' => 'Gabriel',
             'sobrenome' => 'Oliveira',
             'data_nascimento' => '1998-02-05',
             'telefone' => '27998700053',
             'cpf' => '15015573782',
             'email' => 'gabriel.acz.br@gmail.com',
-            'senha' => Hash::make('96911431'),
+            'password' => Hash::make('96911431'),
             'foto' => 'https://avatars.githubusercontent.com/u/1?v=4',
             'niveis_acesso_id' => 1
         ]);
 
-        \App\Models\Usuario::factory()->create([
+        \App\Models\User::factory()->create([
             'nome' => 'Admin',
             'sobrenome' => 'User',
             'data_nascimento' => '1990-01-01',
             'telefone' => '27900000000',
             'cpf' => '00000000000',
             'email' => 'admin@thonson.com.br',
-            'senha' => Hash::make('admin'),
+            'password' => Hash::make('admin'),
             'foto' => 'https://avatars.githubusercontent.com/u/3?v=4',
             'niveis_acesso_id' => 1,
         ]);

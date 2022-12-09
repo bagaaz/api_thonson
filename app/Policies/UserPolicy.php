@@ -3,10 +3,9 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Usuario;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UsuarioPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +24,9 @@ class UsuarioPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Usuario $usuario)
+    public function view(User $usuario)
     {
         //
     }
@@ -48,10 +46,10 @@ class UsuarioPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Usuario  $usuario
+
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Usuario $usuario)
+    public function update(User $user, User $usuario)
     {
         //
     }
@@ -60,10 +58,9 @@ class UsuarioPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Usuario $usuario)
+    public function delete(User $user, User $usuario)
     {
         //
     }
@@ -72,10 +69,9 @@ class UsuarioPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Usuario $usuario)
+    public function restore(User $user, User $usuario)
     {
         //
     }
@@ -84,10 +80,9 @@ class UsuarioPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Usuario  $usuario
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Usuario $usuario)
+    public function forceDelete(User $user, User $usuario)
     {
         //
     }

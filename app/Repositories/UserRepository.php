@@ -2,15 +2,15 @@
 
 namespace App\Repositories;
 
-use App\Interfaces\UsuarioRepositoryInterface;
-use App\Models\Usuario;
+use App\Interfaces\UserRepositoryInterface;
+use App\Models\User;
 use App\Helpers\Helper;
 
-class UsuarioRepository implements UsuarioRepositoryInterface
+class UserRepository implements UserRepositoryInterface
 {
     public function getUsuarios()
     {
-        $consultaUsuarios = Usuario::all();
+        $consultaUsuarios = User::all();
 
         $usuarios = $consultaUsuarios->collect()->map(function ($usuario) {
             return [
@@ -30,7 +30,7 @@ class UsuarioRepository implements UsuarioRepositoryInterface
 
     public function getUsuario($id)
     {
-        $consultaUsuario = Usuario::find($id);
+        $consultaUsuario = User::find($id);
 
         $usuario = [
             'id' => $consultaUsuario->id,
@@ -48,7 +48,7 @@ class UsuarioRepository implements UsuarioRepositoryInterface
 
     public function getNomeUsuario($id)
     {
-        $consultaUsuario = Usuario::find($id);
+        $consultaUsuario = User::find($id);
 
         $usuario = $consultaUsuario->nome . ' ' . $consultaUsuario->sobrenome;
 
@@ -57,19 +57,19 @@ class UsuarioRepository implements UsuarioRepositoryInterface
 
     public function createUsuario($data)
     {
-        return Usuario::create($data);
+        return User::create($data);
     }
 
     public function updateUsuario($data, $id)
     {
-        $usuario = Usuario::find($id);
+        $usuario = User::find($id);
         $usuario->update($data);
         return $usuario;
     }
 
     public function deleteUsuario($id)
     {
-        $usuario = Usuario::find($id);
+        $usuario = User::find($id);
         $usuario->delete();
         return $usuario;
     }
