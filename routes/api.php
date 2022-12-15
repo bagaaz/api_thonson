@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    $user = Auth::user();
+    return response()->json($user, 200);
 });
 
 Route::post('/login', function(Request $request) {
@@ -27,12 +28,12 @@ Route::post('/login', function(Request $request) {
         $user = Auth::user();
         $token = $user->createToken('JWT');
 
-        return response()->json($token, 200);
+        return response()->json($token->plainTextToken, 200);
     }
     return response()->json('Usuário ou senha inválidos.', 401);
 });
 
-Route::prefix('chamado')->group(function () {
+Route::middleware('auth:sanctum')->prefix('chamado')->group(function () {
     Route::get('/', [ChamadoController::class, 'index'])->name('chamado.index');
     Route::get('/create', [ChamadoController::class, 'create'])->name('chamado.create');
     Route::post('/store', [ChamadoController::class, 'store'])->name('chamado.store');
@@ -42,7 +43,7 @@ Route::prefix('chamado')->group(function () {
     Route::get('/destroy/{id}', [ChamadoController::class, 'destroy'])->where('id', '[0-9]+')->name('chamado.destroy');
 });
 
-Route::prefix('usuario')->group(function () {
+Route::middleware('auth:sanctum')->prefix('usuario')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('usuario.index');
     Route::get('/create', [UserController::class, 'create'])->name('usuario.create');
     Route::post('/store', [UserController::class, 'store'])->name('usuario.store');
@@ -52,7 +53,7 @@ Route::prefix('usuario')->group(function () {
     Route::get('/destroy/{id}', [UserController::class, 'destroy'])->where('id', '[0-9]+')->name('usuario.destroy');
 });
 
-Route::prefix('comentario')->group(function () {
+Route::middleware('auth:sanctum')->prefix('comentario')->group(function () {
     Route::get('/', [ComentarioController::class, 'index'])->name('comentario.index');
     Route::get('/create', [ComentarioController::class, 'create'])->name('comentario.create');
     Route::post('/store', [ComentarioController::class, 'store'])->name('comentario.store');

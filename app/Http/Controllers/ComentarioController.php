@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreComentarioRequest;
 use App\Http\Requests\UpdateComentarioRequest;
+use App\Interfaces\ComentarioRepositoryInterface;
 use App\Models\Comentario;
 
 class ComentarioController extends Controller
 {
+    private ComentarioRepositoryInterface $comentarioRepository;
+
+    public function __construct(ComentarioRepositoryInterface $comentarioRepository)
+    {
+        $this->comentarioRepository = $comentarioRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,9 @@ class ComentarioController extends Controller
      */
     public function index()
     {
-        return "Teste de comentário OK";
+        return response()->json([
+            'data' => $this->comentarioRepository->getComentarios()
+        ]);
     }
 
     /**
@@ -36,7 +46,11 @@ class ComentarioController extends Controller
      */
     public function store(StoreComentarioRequest $request)
     {
-        //
+        $comentario = $this->comentarioRepository->createComentario($request->validated());
+
+        return response()->json([
+            'data' => $comentario
+        ]);
     }
 
     /**
@@ -47,7 +61,7 @@ class ComentarioController extends Controller
      */
     public function show(Comentario $comentario)
     {
-        //
+        $comentario = $this->comentarioRepository->getComentario($comentario->id);
     }
 
     /**
@@ -70,7 +84,11 @@ class ComentarioController extends Controller
      */
     public function update(UpdateComentarioRequest $request, Comentario $comentario)
     {
-        //
+        $comentario = $this->comentarioRepository->updateComentario($comentario->id, $request->validated());
+
+        return response()->json([
+            'data' => $comentario
+        ]);
     }
 
     /**
@@ -81,6 +99,10 @@ class ComentarioController extends Controller
      */
     public function destroy(Comentario $comentario)
     {
-        //
+        $this->comentarioRepository->deleteComentario($comentario->id);
+
+        return response()->json([
+            'data' => 'Comentario eliminado correctamente'
+        ]);
     }
 }

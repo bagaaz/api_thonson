@@ -45,7 +45,11 @@ class ChamadoController extends Controller
      */
     public function store(StoreChamadoRequest $request)
     {
-        //
+        $chamado = $this->chamadoRepository->createChamado($request->validated());
+
+        return response()->json([
+            'data' => $chamado
+        ]);
     }
 
     /**
@@ -56,7 +60,11 @@ class ChamadoController extends Controller
      */
     public function show(Chamado $chamado)
     {
-        //
+        $chamado = $this->chamadoRepository->getChamado($chamado->id);
+
+        return response()->json([
+            'data' => $chamado
+        ]);
     }
 
     /**
@@ -79,7 +87,11 @@ class ChamadoController extends Controller
      */
     public function update(UpdateChamadoRequest $request, Chamado $chamado)
     {
-        //
+        $chamado = $this->chamadoRepository->updateChamado($chamado->id, $request->validated());
+
+        return response()->json([
+            'data' => $chamado
+        ]);
     }
 
     /**
@@ -90,6 +102,10 @@ class ChamadoController extends Controller
      */
     public function destroy(Chamado $chamado)
     {
-        //
+        $this->chamadoRepository->deleteChamado($chamado->id);
+
+        return response()->json([
+            'data' => 'Chamado deletado com sucesso!'
+        ]);
     }
 }
