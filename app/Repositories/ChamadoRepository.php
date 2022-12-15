@@ -10,7 +10,6 @@ use App\Models\Chamado;
 
 class ChamadoRepository implements ChamadoRepositoryInterface
 {
-
     private UserRepositoryInterface $usuarioRepository;
     private ComentarioRepositoryInterface $comentarioRepository;
 

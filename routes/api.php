@@ -23,8 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return response()->json($user, 200);
 });
 
-Route::post('/login', function(Request $request) {
-    if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+Route::post('/login', function (Request $request) {
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
         $user = Auth::user();
         $token = $user->createToken('JWT');
 
