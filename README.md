@@ -64,3 +64,30 @@ Caso precise popular o banco com dados fake, segue os comandos para seed de cham
 -   GET /api/usuario/show/{id}: Retorna um usuário específico, conforme o id passado como parâmetro.
 -   POST /api/usuario/update/{id}: Recebe um JSON com os campos do usuário e atualiza um usuário existente, conforme o id passado como parâmetro.
 -   GET /api/usuario/destroy/{id}: Remove um usuário existente, conforme o id
+
+## Rotas de autenticação
+
+### Login
+
+    Rota: POST /api/login
+    Parâmetros:
+        email: string (required)
+        password: string (required)
+    Retorno:
+        Caso o usuário e senha sejam válidos:
+            token: string
+    Exemplo de retorno:
+
+{
+"token": "7|xUrfTw02nVTXGIPZiSRVFc66UIk9k1eDvcjxvYVb"
+}
+
+Autenticar usuário
+
+    Rota: GET /api/user
+    Headers:
+        Accept: application/json
+        Authorization: Bearer {TOKEN}
+    Retorno:
+        Dados do usuário autenticado
+    Exemplo de retorno:
