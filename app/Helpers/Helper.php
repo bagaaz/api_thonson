@@ -67,4 +67,27 @@ class Helper
     {
         return substr($dataHora, 8, 2) . '/' . substr($dataHora, 5, 2) . '/' . substr($dataHora, 0, 4) . ' ' . substr($dataHora, 11, 5);
     }
+
+    public static function mascaraNumeros($numeros, $template) {
+        $resultado = "";
+        $indice_template = 0;
+        $indice_numeros = 0;
+
+        while ($indice_template < strlen($template) && $indice_numeros < strlen($numeros)) {
+          if ($template[$indice_template] == '#') {
+            $resultado .= $numeros[$indice_numeros];
+            $indice_numeros++;
+          } else {
+            $resultado .= $template[$indice_template];
+          }
+          $indice_template++;
+        }
+
+        return $resultado;
+    }
+
+    public static function formataRealBrasileiro($valor)
+    {
+        return "R$ " . number_format($valor, 2, ',', '.');
+    }
 }

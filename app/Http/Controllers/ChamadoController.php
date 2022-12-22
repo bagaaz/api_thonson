@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Interfaces\ChamadoRepositoryInterface;
 use App\Http\Requests\StoreChamadoRequest;
 use App\Http\Requests\UpdateChamadoRequest;
@@ -28,16 +29,6 @@ class ChamadoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreChamadoRequest  $request
@@ -45,11 +36,19 @@ class ChamadoController extends Controller
      */
     public function store(StoreChamadoRequest $request)
     {
-        $chamado = $this->chamadoRepository->createChamado($request->validated());
+        try {
+            $chamado = $this->chamadoRepository->createChamado($request->validationData());
 
-        return response()->json([
-            'data' => $chamado
-        ]);
+            return response()->json([
+                'message' => 'Chamado criado com sucesso',
+                'data' => $chamado
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Erro ao criar chamado',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -58,24 +57,13 @@ class ChamadoController extends Controller
      * @param  \App\Models\Chamado  $chamado
      * @return \Illuminate\Http\Response
      */
-    public function show(Chamado $chamado)
+    public function show(Chamado $chamado, int $idChamado)
     {
-        $chamado = $this->chamadoRepository->getChamado($chamado->id);
+        $chamado = $this->chamadoRepository->getChamado($idChamado);
 
         return response()->json([
             'data' => $chamado
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Chamado  $chamado
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Chamado $chamado)
-    {
-        //
     }
 
     /**
@@ -85,9 +73,9 @@ class ChamadoController extends Controller
      * @param  \App\Models\Chamado  $chamado
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateChamadoRequest $request, Chamado $chamado)
+    public function update(UpdateChamadoRequest $request, Chamado $chamado, int $idChamado)
     {
-        $chamado = $this->chamadoRepository->updateChamado($chamado->id, $request->validated());
+        $chamado = $this->chamadoRepository->updateChamado($request->validationData(), $idChamado);
 
         return response()->json([
             'data' => $chamado
@@ -100,9 +88,9 @@ class ChamadoController extends Controller
      * @param  \App\Models\Chamado  $chamado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Chamado $chamado)
+    public function destroy(Chamado $chamado, int $idChamado)
     {
-        $this->chamadoRepository->deleteChamado($chamado->id);
+        $this->chamadoRepository->deleteChamado($idChamado);
 
         return response()->json([
             'data' => 'Chamado deletado com sucesso!'

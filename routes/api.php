@@ -23,32 +23,30 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return response()->json($user, 200);
 });
 
-Route::post('/login', function(Request $request) {
-    if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+Route::post('/login', function (Request $request) {
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
         $user = Auth::user();
         $token = $user->createToken('JWT');
 
-        return response()->json($token->plainTextToken, 200);
+        return response()->json(['token' => $token->plainTextToken], 200);
     }
     return response()->json('Usuário ou senha inválidos.', 401);
 });
 
+// Route::middleware('auth:sanctum')->apiResource('chamado', ChamadoController::class);
+
 Route::middleware('auth:sanctum')->prefix('chamado')->group(function () {
     Route::get('/', [ChamadoController::class, 'index'])->name('chamado.index');
-    Route::get('/create', [ChamadoController::class, 'create'])->name('chamado.create');
     Route::post('/store', [ChamadoController::class, 'store'])->name('chamado.store');
     Route::get('/show/{id}', [ChamadoController::class, 'show'])->where('id', '[0-9]+')->name('chamado.show');
-    Route::get('/edit/{id}', [ChamadoController::class, 'edit'])->where('id', '[0-9]+')->name('chamado.edit');
     Route::post('/update/{id}', [ChamadoController::class, 'update'])->where('id', '[0-9]+')->name('chamado.update');
     Route::get('/destroy/{id}', [ChamadoController::class, 'destroy'])->where('id', '[0-9]+')->name('chamado.destroy');
 });
 
 Route::middleware('auth:sanctum')->prefix('usuario')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('usuario.index');
-    Route::get('/create', [UserController::class, 'create'])->name('usuario.create');
     Route::post('/store', [UserController::class, 'store'])->name('usuario.store');
     Route::get('/show/{id}', [UserController::class, 'show'])->where('id', '[0-9]+')->name('usuario.show');
-    Route::get('/edit/{id}', [UserController::class, 'edit'])->where('id', '[0-9]+')->name('usuario.edit');
     Route::post('/update/{id}', [UserController::class, 'update'])->where('id', '[0-9]+')->name('usuario.update');
     Route::get('/destroy/{id}', [UserController::class, 'destroy'])->where('id', '[0-9]+')->name('usuario.destroy');
 });
