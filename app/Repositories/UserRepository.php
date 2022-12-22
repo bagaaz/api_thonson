@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Interfaces\UserRepositoryInterface;
 use App\Models\User;
 use App\Helpers\Helper;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -49,21 +50,19 @@ class UserRepository implements UserRepositoryInterface
     public function getNomeUsuario($id)
     {
         $consultaUsuario = User::find($id);
-
         $usuario = $consultaUsuario->nome . ' ' . $consultaUsuario->sobrenome;
-
         return $usuario;
     }
 
     public function createUsuario($data)
     {
-        return User::create($data);
+        return User::create($this->retornaDadosComHashSenha($data));
     }
 
     public function updateUsuario($data, $id)
     {
         $usuario = User::find($id);
-        $usuario->update($data);
+        $usuario->update($this->retornaDadosComHashSenha($data));
         return $usuario;
     }
 
@@ -72,5 +71,14 @@ class UserRepository implements UserRepositoryInterface
         $usuario = User::find($id);
         $usuario->delete();
         return $usuario;
+    }
+
+    private function retornaDadosComHashSenha($dados)
+    {
+        $senha = $dados['password'];
+        $senhaHash = Hash::make($senha);
+        $dados['password'] = $senhaHash;
+
+        return $dados;
     }
 }

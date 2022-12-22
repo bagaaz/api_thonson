@@ -30,16 +30,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreUserRequest  $request
@@ -47,7 +37,19 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        try {
+            $usuario = $this->usuarioRepository->createUsuario($request->validationData());
+
+            return response()->json([
+                'message' => 'Usuário criado com sucesso',
+                'data' => $usuario
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Erro ao criar usuário',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -56,20 +58,11 @@ class UserController extends Controller
      * @param  \App\Models\User  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function show(User $usuario)
+    public function show(User $usuario, int $idUsuario)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $usuario
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $usuario)
-    {
-        //
+        return response()->json([
+            'data' => $this->usuarioRepository->getUsuario($idUsuario)
+        ]);
     }
 
     /**
@@ -79,9 +72,21 @@ class UserController extends Controller
      * @param  \App\Models\User  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, User $usuario)
+    public function update(UpdateUserRequest $request, User $usuario, int $idUsuario)
     {
-        //
+        try {
+            $usuario = $this->usuarioRepository->updateUsuario($request->validationData(), $idUsuario);
+
+            return response()->json([
+                'message' => 'Usuário atualizado com sucesso',
+                'data' => $usuario
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Erro ao atualizar usuário',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
@@ -90,8 +95,19 @@ class UserController extends Controller
      * @param  \App\Models\User  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $usuario)
+    public function destroy(User $usuario, int $idUsuario)
     {
-        //
+        try {
+            $this->usuarioRepository->deleteUsuario($idUsuario);
+
+            return response()->json([
+                'message' => 'Usuário deletado com sucesso'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Erro ao deletar usuário',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 }
