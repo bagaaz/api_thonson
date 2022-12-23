@@ -79,11 +79,11 @@ Caso precise popular o banco com dados fake, segue os comandos para seed de cham
 
 -   Rota: POST /api/login
 -   Parâmetros:
--         email: string (required)
--         password: string (required)
+    -   email: string (required)
+-   -   password: string (required)
 -   Retorno:
--           Caso o usuário e senha sejam válidos:
--               token: string
+-   -   Caso o usuário e senha sejam válidos:
+-   -   token: string
 -   Exemplo de retorno:
 
 ```
