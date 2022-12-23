@@ -29,16 +29,6 @@ class ComentarioController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreComentarioRequest  $request
@@ -46,7 +36,7 @@ class ComentarioController extends Controller
      */
     public function store(StoreComentarioRequest $request)
     {
-        $comentario = $this->comentarioRepository->createComentario($request->validated());
+        $comentario = $this->comentarioRepository->createComentario($request->validationData());
 
         return response()->json([
             'data' => $comentario
@@ -59,20 +49,11 @@ class ComentarioController extends Controller
      * @param  \App\Models\Comentario  $comentario
      * @return \Illuminate\Http\Response
      */
-    public function show(Comentario $comentario)
+    public function show(Comentario $comentario, int $idComentario)
     {
-        $comentario = $this->comentarioRepository->getComentario($comentario->id);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Comentario  $comentario
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comentario $comentario)
-    {
-        //
+        return response()->json([
+            'data' => $this->comentarioRepository->getComentario($idComentario)
+        ]);
     }
 
     /**
@@ -82,9 +63,9 @@ class ComentarioController extends Controller
      * @param  \App\Models\Comentario  $comentario
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateComentarioRequest $request, Comentario $comentario)
+    public function update(UpdateComentarioRequest $request, Comentario $comentario, int $idComentario)
     {
-        $comentario = $this->comentarioRepository->updateComentario($comentario->id, $request->validated());
+        $comentario = $this->comentarioRepository->updateComentario($request->validationData(), $idComentario);
 
         return response()->json([
             'data' => $comentario
@@ -97,12 +78,12 @@ class ComentarioController extends Controller
      * @param  \App\Models\Comentario  $comentario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comentario $comentario)
+    public function destroy(Comentario $comentario, int $idComentario)
     {
-        $this->comentarioRepository->deleteComentario($comentario->id);
+        $this->comentarioRepository->deleteComentario($idComentario);
 
         return response()->json([
-            'data' => 'Comentario eliminado correctamente'
+            'data' => 'Comentário excluído com sucesso!'
         ]);
     }
 }

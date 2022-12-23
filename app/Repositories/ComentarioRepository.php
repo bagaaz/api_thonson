@@ -43,6 +43,8 @@ class ComentarioRepository implements ComentarioRepositoryInterface
             'usuario' => $this->usuarioRepository->getNomeUsuario($consultaComentario->usuario_id),
             'created_at' => $consultaComentario->created_at
         ];
+
+        return $comentario;
     }
 
     public function getComentariosByChamado($idChamado)

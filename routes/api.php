@@ -53,10 +53,8 @@ Route::middleware('auth:sanctum')->prefix('usuario')->group(function () {
 
 Route::middleware('auth:sanctum')->prefix('comentario')->group(function () {
     Route::get('/', [ComentarioController::class, 'index'])->name('comentario.index');
-    Route::get('/create', [ComentarioController::class, 'create'])->name('comentario.create');
     Route::post('/store', [ComentarioController::class, 'store'])->name('comentario.store');
     Route::get('/show/{id}', [ComentarioController::class, 'show'])->where('id', '[0-9]+')->name('comentario.show');
-    Route::get('/edit/{id}', [ComentarioController::class, 'edit'])->where('id', '[0-9]+')->name('comentario.edit');
     Route::post('/update/{id}', [ComentarioController::class, 'update'])->where('id', '[0-9]+')->name('comentario.update');
     Route::get('/destroy/{id}', [ComentarioController::class, 'destroy'])->where('id', '[0-9]+')->name('comentario.destroy');
 });
